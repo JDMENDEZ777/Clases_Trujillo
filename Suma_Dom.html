@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manipulación del DOM</title>
+</head>
+<body>
+
+    <label>Introduce Valor 1: </label>
+    <input type="text" id="val1" />
+    <br /><br />
+
+    <label>Introduce Valor 2: </label>
+    <input type="text" id="val2" />
+    <br /><br />
+
+    <button onclick="getAdd()">Click para añadir!</button>
+    <p id="result"></p>
+
+    <script type="text/javascript">
+        function getAdd() {
+
+            // Obtenemos el valor introducido para el Valor 1 con id val1
+            const num1 = Number(document.getElementById("val1").value);
+
+            // Obtenemos el valor introducido para el Valor 2 con id val2
+            const num2 = Number(document.getElementById("val2").value);
+
+            const add = num1 + num2;
+            console.log(add);
+
+            // Mostramos el resultado en el párrafo con id result utilizando DOM
+            document.getElementById("result").innerHTML = "Valor añadido : " + add;
+
+            // Cambiamos el color del párrafo a rojo
+            document.getElementById("result").style.color = "red";
+        }
+    </script>
+
+</body>
+</html>
