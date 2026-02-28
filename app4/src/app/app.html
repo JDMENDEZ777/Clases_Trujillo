@@ -1,0 +1,14 @@
+<h2>Lista de Tareas (Angular)</h2>
+
+<input type="text" [(ngModel)]="nuevaTarea" placeholder="Escribe una tarea">
+<button (click)="agregarTarea()">Agregar</button>
+
+<ul>
+  <li *ngFor="let tarea of listaTareas" 
+      (click)="toggleTarea(tarea)"
+      [class.completada]="tarea.completada">
+    {{ tarea.texto }}
+  </li>
+</ul>
+
+<router-outlet />
