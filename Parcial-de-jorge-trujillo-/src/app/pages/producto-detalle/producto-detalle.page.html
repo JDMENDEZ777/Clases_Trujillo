@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="detail-toolbar">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goBack()" class="back-button">
+        <ion-icon slot="icon-only" name="arrowBackOutline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="detail-title">Detalle del producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="detail-page">
+  <div class="loading-block" *ngIf="loading">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Cargando producto...</p>
+  </div>
+
+  <div class="error-block" *ngIf="!loading && errorMessage">
+    <ion-text color="danger">{{ errorMessage }}</ion-text>
+  </div>
+
+  <div *ngIf="!loading && product" class="product-detail-card">
+    <div class="card-image-row">
+      <div class="card-image">
+        <ion-img [src]="product.image" [alt]="product.title" class="product-image"></ion-img>
+      </div>
+      <div class="card-info-compact">
+        <h1 class="product-title-compact">{{ product.title }}</h1>
+        <p class="category-badge-compact">{{ product.category }}</p>
+        
+        <div class="price-rating-compact">
+          <div class="price-display">{{ product.price | currency:'USD':'symbol':'1.2-2' }}</div>
+          <div class="rating-display">⭐ {{ product.rating.rate }} ({{ product.rating.count }})</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="description-card">
+      <p class="description-text">{{ product.description }}</p>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div class="button-group-compact">
+      <ion-button expand="block" color="success" (click)="addToCart()" class="add-to-cart-btn">
+        <ion-icon slot="start" name="cartOutline"></ion-icon>
+        Agregar al carrito
+      </ion-button>
+      <ion-button expand="block" fill="outline" color="success" (click)="goBack()" class="back-btn">
+        Seguir comprando
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

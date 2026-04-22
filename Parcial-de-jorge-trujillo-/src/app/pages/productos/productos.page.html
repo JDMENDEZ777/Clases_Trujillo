@@ -1,0 +1,96 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="productos-toolbar">
+    <ion-title class="productos-title">🛍️ TIENDA FET</ion-title>
+    <div class="toolbar-info">
+      <div class="cart-info">
+        <ion-icon name="cart-outline"></ion-icon>
+        <span>{{ (cartCount$ | async) || 0 }}</span>
+      </div>
+      <div class="history-info" (click)="goToHistory()">
+        <ion-icon name="receipt-outline"></ion-icon>
+        <span>{{ (historyCount$ | async) || 0 }}</span>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="productos-page">
+  <div class="page-container">
+
+    <!-- LOADING STATE -->
+    <div class="status-row loading" *ngIf="loading">
+      <ion-spinner name="crescent"></ion-spinner>
+      <span>Cargando productos excepcionales...</span>
+    </div>
+
+    <!-- ERROR STATE -->
+    <div class="status-row error" *ngIf="errorMessage">
+      <ion-icon name="alert-circle-outline"></ion-icon>
+      <span>{{ errorMessage }}</span>
+    </div>
+
+    <!-- PRODUCTS GRID -->
+    <div class="products-grid" *ngIf="!loading && products.length">
+      <article class="product-card" *ngFor="let product of products">
+        <!-- Badge especial si el precio es bajo -->
+        <div class="product-badge" *ngIf="product.price < 50" [ngClass]="{ 'deal-badge': true }">
+          <span>OFERTA</span>
+        </div>
+
+        <div class="image-wrapper">
+          <img [src]="product.image" [alt]="product.title" class="product-image" />
+        </div>
+
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="category-tag">{{ product.category }}</span>
+            <span class="rating-badge">★ {{ product.rating.rate }}</span>
+          </div>
+
+          <h2 class="product-title">{{ product.title }}</h2>
+          <p class="product-description">{{ product.description }}</p>
+
+          <div class="product-stats">
+            <div class="stat">
+              <span class="label">Rating</span>
+              <span class="value">{{ product.rating.rate }}/5</span>
+            </div>
+            <div class="stat">
+              <span class="label">Reseñas</span>
+              <span class="value">{{ product.rating.count }}</span>
+            </div>
+          </div>
+
+          <div class="price-section">
+            <span class="price-label">Precio</span>
+            <span class="price-value">{{ product.price | currency:'USD':'symbol':'1.2-2' }}</span>
+          </div>
+
+          <div class="card-actions">
+            <button class="btn-detail" (click)="goToDetail(product)">
+              <ion-icon name="eye-outline"></ion-icon>
+              Ver detalle
+            </button>
+            <button class="btn-add-cart" (click)="addToCart(product)">
+              <ion-icon name="add-circle-outline"></ion-icon>
+              Agregar
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div class="empty-products" *ngIf="!loading && !products.length">
+      <div class="empty-icon">📦</div>
+      <h2>No hay productos disponibles</h2>
+      <p>Intenta recargar la página</p>
+    </div>
+  </div>
+</ion-content>
+
+<!-- FLOATING CART FAB - FUERA DEL ION-CONTENT -->
+<div class="floating-cart-fab" *ngIf="(cartCount$ | async) as count" [style.display]="count > 0 ? 'flex' : 'none'" (click)="goToCart()">
+  <div class="fab-badge">{{ count }}</div>
+  <ion-icon name="cart"></ion-icon>
+</div>

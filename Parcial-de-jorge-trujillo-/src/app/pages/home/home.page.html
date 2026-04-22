@@ -1,0 +1,53 @@
+<ion-content [fullscreen]="true" class="home-page">
+  <!-- HERO SECTION -->
+  <div class="hero-section">
+    <h1 class="hero-title">¡Bienvenido a TIENDA FET!</h1>
+    <p class="hero-subtitle">Descubre nuestros mejores productos</p>
+  </div>
+
+  <!-- QUICK ACCESS CARDS -->
+  <div class="quick-access-grid">
+    <ion-card class="quick-card" (click)="navigateTo('/productos')">
+      <ion-card-content class="card-content">
+        <ion-icon name="addCircleOutline" class="card-icon"></ion-icon>
+        <h3>Productos</h3>
+        <p>Explora nuestro catálogo</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="quick-card" (click)="navigateTo('/carrito')">
+      <ion-card-content class="card-content">
+        <ion-icon name="cartOutline" class="card-icon"></ion-icon>
+        <h3>Carrito</h3>
+        <p>Revisa tu compra</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="quick-card" (click)="navigateTo('/historial')">
+      <ion-card-content class="card-content">
+        <ion-icon name="receiptOutline" class="card-icon"></ion-icon>
+        <h3>Historial</h3>
+        <p>Tus compras previas</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- INFO SECTION -->
+  <div class="info-section">
+    <h2>¿Por qué elegirnos?</h2>
+    <ul class="info-list">
+      <li><strong>✓ Productos de calidad</strong> - Seleccionados cuidadosamente</li>
+      <li><strong>✓ Envíos rápidos</strong> - Recibe tu pedido en tiempo</li>
+      <li><strong>✓ Mejor precio</strong> - Compara y ahorra</li>
+      <li><strong>✓ Servicio confiable</strong> - Estamos aquí para ti</li>
+    </ul>
+  </div>
+
+  <!-- CTA BUTTON -->
+  <div class="cta-section">
+    <ion-button expand="block" color="success" (click)="navigateTo('/productos')" class="cta-button">
+      <ion-icon slot="start" name="addCircleOutline"></ion-icon>
+      Ir a Productos
+    </ion-button>
+  </div>
+</ion-content>

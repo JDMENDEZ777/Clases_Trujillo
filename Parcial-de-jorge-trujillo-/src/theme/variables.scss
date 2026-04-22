@@ -1,0 +1,54 @@
+// For information on how to create your own theme, please refer to:
+// https://ionicframework.com/docs/theming/
+
+// Variables de Color Personalizado
+:root {
+  /** Primary - Verde **/
+  --ion-color-primary: #39923c;
+  --ion-color-primary-rgb: 57, 146, 60;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #2f7d33;
+  --ion-color-primary-tint: #4d9d4f;
+
+  /** Secondary - Verde Claro **/
+  --ion-color-secondary: #86c573;
+  --ion-color-secondary-rgb: 134, 197, 115;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #75ae65;
+  --ion-color-secondary-tint: #92cb81;
+
+  /** Tertiary - Blanco/Gris claro **/
+  --ion-color-tertiary: #f8faf8;
+  --ion-color-tertiary-rgb: 248, 250, 248;
+  --ion-color-tertiary-contrast: #1b5123;
+  --ion-color-tertiary-contrast-rgb: 27, 81, 35;
+  --ion-color-tertiary-shade: #dae8da;
+  --ion-color-tertiary-tint: #e8f0e7;
+
+  /** Fondo General **/
+  --ion-background-color: #f8faf8;
+  --ion-background-color-rgb: 248, 250, 248;
+
+  /** Tarjetas y Componentes **/
+  --ion-card-background: #ffffff;
+
+  /** Toolbar **/
+  --ion-toolbar-background: #39923c;
+  --ion-toolbar-text-color: #ffffff;
+}
+
+// Aplicar temas a componentes específicos
+ion-content {
+  --background: linear-gradient(135deg, #f8faf8 0%, #e8f0e7 100%);
+}
+
+ion-toolbar {
+  --background: #39923c;
+  --color: #ffffff;
+}
+
+ion-button.ion-activated {
+  --background: #2f7d33;
+}

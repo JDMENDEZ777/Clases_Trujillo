@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="history-toolbar">
+    <ion-icon slot="start" name="receiptOutline" class="toolbar-icon"></ion-icon>
+    <ion-title class="history-title">Mi Historial de Compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="history-page">
+  <ng-container *ngIf="(history$ | async) as history">
+    <section *ngIf="history.length; else emptyHistory" class="history-section">
+      <div class="history-header">
+        <h2>Tus compras ({{ history.length }})</h2>
+        <p class="header-subtitle">Aquí están todos los productos que has comprado</p>
+      </div>
+
+      <div class="history-list">
+        <article class="history-item" *ngFor="let item of history; let i = index">
+          <div class="item-number">
+            <span>{{ i + 1 }}</span>
+          </div>
+
+          <div class="item-image">
+            <img [src]="item.image" [alt]="item.title" class="item-img" />
+          </div>
+
+          <div class="item-content">
+            <h3 class="item-title">{{ item.title }}</h3>
+            <p class="item-category">{{ item.category }}</p>
+            <div class="item-meta">
+              <span class="item-rating">⭐ {{ item.rating.rate }}</span>
+              <span class="item-price">{{ item.price | currency:'USD':'symbol':'1.2-2' }}</span>
+            </div>
+            <p class="item-date" *ngIf="item.purchasedAt">📅 {{ item.purchasedAt }}</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <ng-template #emptyHistory>
+      <div class="empty-state">
+        <div class="empty-icon">📦</div>
+        <h2>Sin historial de compras</h2>
+        <p>Aún no has realizado compras. ¡Explora nuestros productos!</p>
+      </div>
+    </ng-template>
+  </ng-container>
+</ion-content>

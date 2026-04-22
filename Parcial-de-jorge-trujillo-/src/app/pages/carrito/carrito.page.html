@@ -1,0 +1,77 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="cart-toolbar">
+    <ion-title class="cart-title">Carrito de Compras</ion-title>
+    <div class="cart-badge" *ngIf="cart.length > 0">{{ cart.length }}</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="cart-page">
+  <section class="cart-container" *ngIf="cart.length; else emptyState">
+    <div class="cart-header-info">
+      <div class="info-box">
+        <span class="label">Productos</span>
+        <span class="value">{{ cart.length }}</span>
+      </div>
+      <div class="info-box">
+        <span class="label">Subtotal</span>
+        <span class="value">{{ total | currency:'USD':'symbol':'1.2-2' }}</span>
+      </div>
+    </div>
+
+    <div class="cart-items-list">
+      <div class="cart-item" *ngFor="let product of cart; let i = index">
+        <div class="item-image">
+          <img [src]="product.image" [alt]="product.title" />
+        </div>
+        <div class="item-info">
+          <h3 class="item-title">{{ product.title }}</h3>
+          <p class="item-category">{{ product.category }}</p>
+          <div class="item-rating">★ {{ product.rating.rate }} ({{ product.rating.count }} reseñas)</div>
+        </div>
+        <div class="item-details">
+          <div class="item-price">{{ product.price | currency:'USD':'symbol':'1.2-2' }}</div>
+          <button class="btn-remove" (click)="removeItem(i)" title="Eliminar producto">
+            <ion-icon name="trash-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <div class="summary-row">
+        <span class="summary-label">Subtotal:</span>
+        <span class="summary-value">{{ total | currency:'USD':'symbol':'1.2-2' }}</span>
+      </div>
+      <div class="summary-row tax-row">
+        <span class="summary-label">Impuestos (est.):</span>
+        <span class="summary-value">{{ (total * 0.08) | currency:'USD':'symbol':'1.2-2' }}</span>
+      </div>
+      <div class="summary-row total-row">
+        <span class="summary-label">Total:</span>
+        <span class="summary-value-total">{{ (total * 1.08) | currency:'USD':'symbol':'1.2-2' }}</span>
+      </div>
+    </div>
+
+    <div class="cart-actions-footer">
+      <ion-button expand="block" class="btn-primary" (click)="confirmPurchase()" [disabled]="!cart.length">
+        <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+        Confirmar Compra
+      </ion-button>
+      <ion-button expand="block" class="btn-secondary" fill="outline" (click)="clearCart()" [disabled]="!cart.length">
+        <ion-icon slot="start" name="trash-outline"></ion-icon>
+        Vaciar Carrito
+      </ion-button>
+    </div>
+
+    <ion-toast [isOpen]="showToast" [message]="toastMessage" duration="2500" color="success"
+      (didDismiss)="showToast = false"></ion-toast>
+  </section>
+
+  <ng-template #emptyState>
+    <div class="empty-state">
+      <div class="empty-icon">Shopping Bag</div>
+      <h2>Tu carrito esta vacio</h2>
+      <p>Explora nuestros productos y agrega algunos a tu carrito para empezar a comprar.</p>
+    </div>
+  </ng-template>
+</ion-content>

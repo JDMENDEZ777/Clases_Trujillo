@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Ingreso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="login-page">
+  <div class="login-card">
+    <div class="card-header">
+      <div class="badge">Ingreso</div>
+      <h1>Bienvenido</h1>
+      <p class="hint">Ingresá con tu correo y contraseña para continuar.</p>
+    </div>
+
+    <form (ngSubmit)="login()" autocomplete="off">
+      <ion-item>
+        <ion-label position="floating">Correo electrónico</ion-label>
+        <ion-input type="email" required [(ngModel)]="credentials.email" name="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" required [(ngModel)]="credentials.password" name="password"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" type="submit">Ingresar</ion-button>
+    </form>
+
+    <div class="register-link">
+      <p>¿No tienes cuenta? <a (click)="goToRegister()">Regístrate aquí</a></p>
+    </div>
+
+    <ion-text color="danger" *ngIf="errorMessage" class="error-text">{{ errorMessage }}</ion-text>
+  </div>
+</ion-content>

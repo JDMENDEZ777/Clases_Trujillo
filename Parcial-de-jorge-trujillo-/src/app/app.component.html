@@ -1,0 +1,73 @@
+<ion-app>
+  <!-- SIDE MENU -->
+  <ion-menu side="start" menuId="main-menu" contentId="main-content" type="overlay">
+    <!-- USER PROFILE HEADER -->
+    <div class="user-profile-header" *ngIf="currentUser$ | async as user">
+      <div class="profile-avatar">
+        <span>{{ user.name.charAt(0).toUpperCase() }}</span>
+      </div>
+      <div class="profile-info">
+        <h2 class="profile-name">{{ user.name }}</h2>
+        <p class="profile-email">{{ user.email }}</p>
+      </div>
+    </div>
+
+    <ion-header class="menu-header">
+      <ion-toolbar>
+        <ion-title class="menu-title">MENÚ</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="menu-content">
+      <ion-list id="main-menu-list" class="menu-list">
+        <ion-list-header class="menu-list-header">
+          <ion-label>Navegación</ion-label>
+        </ion-list-header>
+
+        @for (p of appPages; track p; let i = $index) {
+          <ion-menu-toggle auto-hide="true">
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected" class="menu-item">
+              <ion-icon aria-hidden="true" slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        }
+      </ion-list>
+
+      <ion-list id="labels-list" class="menu-list">
+        <ion-list-header class="menu-list-header">
+          <ion-label>Etiquetas</ion-label>
+        </ion-list-header>
+
+        @for (label of labels; track label) {
+          <ion-item lines="none" class="menu-item">
+            <ion-icon aria-hidden="true" slot="start" name="bookmark-outline"></ion-icon>
+            <ion-label>{{ label }}</ion-label>
+          </ion-item>
+        }
+      </ion-list>
+    </ion-content>
+
+    <!-- Footer con botón de logout -->
+    <div class="menu-footer">
+      <ion-button expand="block" fill="clear" color="danger" (click)="logout()" class="logout-btn">
+        <ion-icon slot="start" name="log-out"></ion-icon>
+        Cerrar Sesión
+      </ion-button>
+    </div>
+  </ion-menu>
+
+  <!-- MAIN CONTENT -->
+  <div id="main-content" class="main-content-wrapper">
+    <ion-header class="app-header">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button menu="main-menu"></ion-menu-button>
+        </ion-buttons>
+        <ion-title class="app-title">TIENDA FET</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-router-outlet></ion-router-outlet>
+  </div>
+</ion-app>

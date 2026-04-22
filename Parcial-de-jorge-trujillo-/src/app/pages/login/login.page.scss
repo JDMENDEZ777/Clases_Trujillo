@@ -1,0 +1,99 @@
+.login-page {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 24px 16px;
+  background: radial-gradient(circle at top, rgba(134, 197, 115, 0.25), transparent 35%),
+    linear-gradient(180deg, #edf7ed 0%, #ffffff 100%);
+}
+
+.login-card {
+  width: min(420px, 100%);
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 34px 28px;
+  box-shadow: 0 24px 60px rgba(61, 128, 80, 0.14);
+  border: 1px solid rgba(134, 197, 115, 0.25);
+}
+
+.card-header {
+  margin-bottom: 22px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #dff4dc;
+  color: #2f6f31;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+}
+
+.login-card h1 {
+  margin: 0 0 10px;
+  font-size: 2rem;
+  color: #1b5123;
+}
+
+.hint {
+  margin: 0;
+  color: #4f6f4a;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+ion-item {
+  margin-bottom: 16px;
+  --background: #f4fbf2;
+  --border-radius: 16px;
+  --box-shadow: inset 0 0 0 1px rgba(81, 167, 97, 0.15);
+}
+
+ion-input {
+  color: #1f4725;
+}
+
+ion-button {
+  margin-top: 10px;
+  border-radius: 999px;
+  --background: #39923c;
+  --color: #ffffff;
+  --box-shadow: 0 14px 28px rgba(57, 146, 60, 0.18);
+}
+
+ion-button:hover {
+  --background: #2e7d33;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 20px;
+  color: #4f6f4a;
+  font-size: 0.95rem;
+
+  a {
+    color: #39923c;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.error-text {
+  display: block;
+  margin-top: 16px;
+  font-size: 0.95rem;
+  color: #b00020;
+}
