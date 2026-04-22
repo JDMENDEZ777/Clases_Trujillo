@@ -12,11 +12,12 @@
       </div>
     </div>
 
-    <ion-header class="menu-header">
-      <ion-toolbar>
-        <ion-title class="menu-title">MENÚ</ion-title>
-      </ion-toolbar>
-    </ion-header>
+   <ion-header class="menu-header">
+  <ion-toolbar color="primary"> <div class="logo-container">
+      <ion-img src="assets/logofet.png" class="menu-logo"></ion-img>
+    </div>
+  </ion-toolbar>
+</ion-header>
 
     <ion-content class="menu-content">
       <ion-list id="main-menu-list" class="menu-list">
@@ -34,18 +35,7 @@
         }
       </ion-list>
 
-      <ion-list id="labels-list" class="menu-list">
-        <ion-list-header class="menu-list-header">
-          <ion-label>Etiquetas</ion-label>
-        </ion-list-header>
-
-        @for (label of labels; track label) {
-          <ion-item lines="none" class="menu-item">
-            <ion-icon aria-hidden="true" slot="start" name="bookmark-outline"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        }
-      </ion-list>
+      
     </ion-content>
 
     <!-- Footer con botón de logout -->
@@ -64,7 +54,7 @@
         <ion-buttons slot="start">
           <ion-menu-button menu="main-menu"></ion-menu-button>
         </ion-buttons>
-        <ion-title class="app-title">TIENDA FET</ion-title>
+        <ion-title class="app-title">FET - SHOPIFY</ion-title>
       </ion-toolbar>
     </ion-header>
 

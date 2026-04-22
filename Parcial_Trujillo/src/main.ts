@@ -15,3 +15,5 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(),
   ],
 });
+
+/*Punto de entrada para los componentes de la aplicación*/ 

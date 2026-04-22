@@ -3,17 +3,8 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'login', // Al abrir la app, te manda directo al Login de la FET
     pathMatch: 'full',
-  },
-  {
-    path: 'folder/:id',
-    loadComponent: () =>
-      import('./folder/folder.page').then((m) => m.FolderPage),
-  },
-  {
-    path: 'clase2',
-    loadComponent: () => import('./clase2/clase2.page').then( m => m.Clase2Page)
   },
   {
     path: 'home',
@@ -43,4 +34,9 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./pages/register/register.page').then( m => m.RegisterPage)
   },
+  // Ruta comodín: Si el usuario escribe cualquier cosa mal, lo manda al login
+  {
+    path: '**',
+    redirectTo: 'login'
+  }
 ];
